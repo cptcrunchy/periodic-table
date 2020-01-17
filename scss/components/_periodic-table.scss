@@ -1,0 +1,15 @@
+.periodic-table {
+    display: grid;
+    grid-template-columns: repeat(18, minmax(90px, 1fr));
+    grid-template-rows: repeat(9, minmax(95px, 1fr));
+    grid-gap: 5px;
+    width: max-content;
+    margin: 0 auto;
+    padding: 8px;
+}
+.periodic-table-bg {
+    height: 100%;
+    width: 100%;
+    display: block;
+    padding: 20px 0;
+}

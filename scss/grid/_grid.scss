@@ -1,0 +1,11 @@
+@for $i from 1 through 18 {
+    .col-#{$i} {
+        grid-column: $i / 1;
+    }
+}
+
+@for $i from 1 through 9 {
+    .row-#{$i} {
+        grid-row: $i / 1;
+    }
+}
