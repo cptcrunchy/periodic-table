@@ -1,6 +1,7 @@
 .element {
     display: flex;
     flex-flow: column nowrap;
+    width: 80px;
     &-title {
         grid-column: 1 / 3;
         grid-row: 1 / 2;
