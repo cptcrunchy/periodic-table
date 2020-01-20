@@ -18,24 +18,19 @@ xhr.open("GET", "http://localhost:3000/PeriodicTableJSON.json");
 xhr.send();
 
 function formatJSON(data){
-    var elementsJSON = JSON.parse(data)
-    var elementsArray = elementsJSON.elements.map( ({name, atomic_mass, number, symbol, melt, category}) => {
+    return JSON.parse(data).elements.map( ({name, atomic_mass, number, symbol, melt, category}) => {
         return  ({number,symbol,name, atomic_mass: Number.parseFloat(atomic_mass).toFixed(4),category,melt})
         })
-
-    return elementsArray
 }
 
 function changeElementsCategory(elements){
-    elements.forEach( ({category}) => category.replace('diatomic nonmetal', 'nonmetal')//?
-    )
-    return elements
+    return elements.map( element => element.category === 'diatomic nonmetal' ? {...element, category: 'nonmetal' } : element)
 }
 
 function setElementColor(elementNode, elementCategory){
     switch (elementCategory) {
-        case "diatomic nonmetal":
-            elementNode.classList.add('bg-green') 
+        case "nonmetal":
+            elementNode.classList.add('bg-light-purple') 
         break;
         case "noble gas":
             elementNode.classList.add("bg-light-blue")
@@ -53,6 +48,8 @@ function setElementColor(elementNode, elementCategory){
             elementNode.classList.add("bg-purple")
         break;
         case "transition metal":
+            elementNode.classList.add('bg-dark-green')
+        break;
         case "post-transition metal":
             elementNode.classList.add("bg-blue")
         break;
