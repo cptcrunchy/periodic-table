@@ -13,14 +13,20 @@ xhr.addEventListener("readystatechange", function() {
   }
 });
 
-xhr.open("GET", "http://localhost:3000/PeriodicTableJSON.json");
+xhr.open("GET", "PeriodicTable.json");
 
 xhr.send();
 
 function formatJSON(data){
     return JSON.parse(data).elements.map( ({name, atomic_mass, number, symbol, melt, category}) => {
-        return  ({number,symbol,name, atomic_mass: Number.parseFloat(atomic_mass).toFixed(4),category,melt})
-        })
+        return  ({
+            number,
+            symbol,
+            name,
+            atomic_mass: Number.parseFloat(atomic_mass).toFixed(4),
+            category,
+            melt })
+    })
 }
 
 function changeElementsCategory(elements){
@@ -193,7 +199,6 @@ function setElementRow(elementNode, elementNumber){
 
 function displayElements(elements){
     var periodicTableParent = document.querySelector('#parent-table')
-    elements.forEach( el => console.log(el.category))
 
     elements.forEach(element => {
         var elementNode = document.createElement('div')
